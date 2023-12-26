@@ -1,26 +1,18 @@
 import { db } from "@/lib/db";
+import { BoardItem } from "./_component/BoardItem";
+import { CreateBoard } from "./_component/CreateBoardForm";
 
-function OrganizationIdPage() {
-  async function create(formData) {
-    "use server";
-    await db.board.create({
-      data: {
-        title: formData.get("title"),
-      },
-    });
-  }
+async function OrganizationIdPage() {
+  const boards = await db.board.findMany();
 
   return (
     <div>
-      <form action={create}>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="enter board title"
-          className="border border-black p-1"
-        />
-      </form>
+      <CreateBoard />
+      <div>
+        {boards.map((board) => (
+          <BoardItem key={board.id} id={board.id} title={board.title} />
+        ))}
+      </div>
     </div>
   );
 }
