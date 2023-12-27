@@ -7,7 +7,7 @@ const OrganizationLayout = ({ children }) => {
         <div className="w-64 shrink-0 hidden md:block">
           <Sidebar />
         </div>
-        <div>{children}</div>
+        <div className="w-full ml-4">{children}</div>
       </div>
     </main>
   );

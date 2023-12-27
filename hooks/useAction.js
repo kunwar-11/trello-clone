@@ -14,9 +14,7 @@ export function useAction(action, options) {
         if (!result) {
           return;
         }
-        if (result.fieldErrors) {
-          setFieldErrors(result.fieldErrors);
-        }
+        setFieldErrors(result.fieldErrors);
 
         if (result.error) {
           setErrors(result.error);
