@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { createBoard } from "@/actions/create-board";
 import { useAction } from "@/hooks/useAction";
+import { FormInput } from "@/components/forms/form-input";
+import { FormButton } from "@/components/forms/form-button";
 
 export function CreateBoard() {
   const { execute, fieldErrors } = useAction(createBoard, {
@@ -21,28 +23,18 @@ export function CreateBoard() {
   return (
     <form action={onSubmit} className="flex items-center gap-x-4">
       <div className="flex flex-col gap-y-2">
-        <input
+        <FormInput
           type="text"
           id="title"
           name="title"
           required
           placeholder="enter board title"
-          className="border border-black p-1"
+          error={fieldErrors}
+          label="Board Title"
         />
-        {fieldErrors?.title ? (
-          <>
-            {fieldErrors?.title.map((error) => (
-              <small key={error} className="text-rose-600">
-                {error}
-              </small>
-            ))}
-          </>
-        ) : null}
       </div>
 
-      <Button type="submit" size="sm">
-        Submit
-      </Button>
+      <FormButton>Save</FormButton>
     </form>
   );
 }
