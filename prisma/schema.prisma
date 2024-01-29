@@ -12,5 +12,14 @@ generator client {
 
 model Board {
   id String @id @default(uuid())
+  orgId String
   title String
+  imgid String
+  imgThumbUrl String @db.Text
+  imgFullUrl String @db.Text
+  imgUserName String @db.Text
+  imgLinkHtml String @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

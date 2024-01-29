@@ -1,3 +1,4 @@
+import { FormPopup } from "@/components/forms/form-popover";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
@@ -12,20 +13,24 @@ export function Navbar() {
         <div className="hidden md:flex">
           <Logo />
         </div>
-        <Button
-          size="sm"
-          className="rounded-sm hidden md:block h-auto px-2 py-1.5"
-          variant="primary"
-        >
-          Create
-        </Button>
-        <Button
-          size="sm"
-          className="rounded-sm block md:hidden "
-          variant="primary"
-        >
-          <Plus className="h-4 w-4" />
-        </Button>
+        <FormPopup align="start" side="bottom" sideOffset={18}>
+          <Button
+            size="sm"
+            className="rounded-sm hidden md:block h-auto px-2 py-1.5"
+            variant="primary"
+          >
+            Create
+          </Button>
+        </FormPopup>
+        <FormPopup>
+          <Button
+            size="sm"
+            className="rounded-sm block md:hidden "
+            variant="primary"
+          >
+            <Plus className="h-4 w-4" />
+          </Button>
+        </FormPopup>
       </div>
       <div className="flex gap-x-4 items-center">
         <OrganizationSwitcher

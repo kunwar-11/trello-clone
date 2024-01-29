@@ -7,24 +7,39 @@ import { revalidatePath } from "next/cache";
 import { BoardSchema } from "./schema";
 
 async function handler(data) {
-  const { userId } = auth();
+  const { userId, orgId } = auth();
 
-  if (!userId) {
+  if (!userId || !orgId) {
     return {
       error: "Unauthorized !",
     };
   }
 
-  const { title } = data;
+  const { title, image } = data;
+  const [imgid, imgThumbUrl, imgFullUrl, imgLinkHtml, imgUserName] =
+    image.split("|");
+
+  if (!imgid || !imgThumbUrl || !imgFullUrl || !imgLinkHtml || !imgUserName) {
+    return {
+      error: "Missing Fields ! Failed To Create Board",
+    };
+  }
   let board;
 
   try {
     board = await db.board.create({
       data: {
         title,
+        orgId,
+        imgid,
+        imgThumbUrl,
+        imgFullUrl,
+        imgLinkHtml,
+        imgUserName,
       },
     });
   } catch (error) {
+    console.error(error);
     return {
       error: "Failed to create !",
     };
