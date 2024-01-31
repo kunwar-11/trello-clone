@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { ListOptions } from "./ListOptions";
 
-export const ListHeader = ({ data }) => {
+export const ListHeader = ({ data, onAddCard }) => {
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef(null);
   const formRef = useRef(null);
@@ -76,7 +76,7 @@ export const ListHeader = ({ data }) => {
           {data?.title}
         </div>
       )}
-      <ListOptions onAddCard={() => {}} data={data} />
+      <ListOptions onAddCard={onAddCard} data={data} />
     </div>
   );
 };
