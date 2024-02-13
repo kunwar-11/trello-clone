@@ -3,7 +3,6 @@
 import { updateList } from "@/actions/update-list";
 import { FormInput } from "@/components/forms/form-input";
 import { useAction } from "@/hooks/useAction";
-import { list } from "postcss";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { ListOptions } from "./ListOptions";
