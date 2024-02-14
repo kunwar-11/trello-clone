@@ -1,0 +1,19 @@
+import { z } from "zod";
+
+export const UpdateCard = z.object({
+  boardId: z.string(),
+  description: z.optional(
+    z.string({
+      required_error: "Description Is Required",
+      invalid_type_error: "Description is Required",
+    })
+  ),
+  title: z
+    .string({
+      required_error: "Title is Required",
+      invalid_type_error: "Title is Invalid",
+    })
+    .min(3, "Title is too short"),
+
+  id: z.string(),
+});
