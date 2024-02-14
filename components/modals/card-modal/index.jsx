@@ -3,6 +3,8 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useCardModal } from "@/hooks/useCardModal";
 import { useQuery } from "@tanstack/react-query";
+import { Actions } from "./Actions";
+import { Description } from "./Description";
 import { Header } from "./Header";
 
 export const CardModal = () => {
@@ -21,6 +23,18 @@ export const CardModal = () => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         {!cardData ? <Header.Skeleton /> : <Header data={cardData} />}
+        <div className="grid grid-cols-1 md:grid-cols-4 md:gap-4">
+          <div className="col-span-3">
+            <div className="w-full space-y-6">
+              {!cardData ? (
+                <Description.Skeleton />
+              ) : (
+                <Description data={cardData} />
+              )}
+            </div>
+          </div>
+          {!cardData ? <Actions.Skeleton /> : <Actions data={cardData} />}
+        </div>
       </DialogContent>
     </Dialog>
   );
